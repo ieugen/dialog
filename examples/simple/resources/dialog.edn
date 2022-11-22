@@ -1,0 +1,11 @@
+{:level :debug
+ :levels {"dialog.examples.sentry" :info}
+ :outputs {:logback {:type dialog.examples.logback/file-appender-logger
+                     :format :simple
+                     :timestamp :short
+                     :file-name "target/dialog-logback.log"}
+           :sentry {:type dialog.examples.sentry/sentry-logger
+                    ;; https://github.com/getsentry/sentry-clj#additional-initialisation-options
+                    :level :info
+                    :levels {"dialog.examples.sentry" :error}
+                    :sentry-opts {:dsn #env SENTRY_DSN}}}}
